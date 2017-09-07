@@ -1,0 +1,19 @@
+{
+  "name": "react-bricks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github-home:shashankraider/react-bricks.git",
+  "author": "smendiratta <shashank_mendiratta@intuit.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "bricks.js": "^1.8.0",
+    "cross-env": "^5.0.5",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "webpack": "^3.5.6"
+  }
+}
