@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     template: './example/index.html',
@@ -36,5 +37,8 @@ module.exports = {
     resolve: {
         extensions: [".js", ".json", ".jsx", ".css"]
     },
-    plugins: [HtmlWebpackPluginConfig]
+    plugins: [HtmlWebpackPluginConfig,
+        new webpack.LoaderOptionsPlugin({
+            debug: true
+        })]
 }

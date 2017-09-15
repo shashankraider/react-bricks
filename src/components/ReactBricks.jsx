@@ -4,46 +4,49 @@ import Bricks from 'bricks.js';
 class ReactBricks extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            containerId: `#${this.props.containerId}` || "#bricks-container",
-            sizes: this.props.sizes || {
-                sizes: [
+        this.state={
+            containerId: this.props.containerId || "bricks-container",
+            sizes: this.props.sizes || [
                     {columns: 2, gutter: 20},
                     {mq: '768px', columns: 3, gutter: 20},
                     {mq: '1024px', columns: 6, gutter: 20}
-                ]
-            },
-            packed: this.props.packed || 'data-packed',
-            bricksInstance: this.initializeBricks()
+                ],
+            packed: this.props.packed || "data-packed",
         }
     }
-    initializeBricks= () => {
+    initializeBricks = () => {
         const instance = Bricks({
-            container: this.props.containerId,
+            container: `#${this.state.containerId}`,
             packed: this.state.packed,
-            sizes: this.state.sizes
+            sizes: [
+                    {columns: 2, gutter: 20},
+                    {mq: '768px', columns: 3, gutter: 20},
+                    {mq: '1024px', columns: 4, gutter: 20}
+                ]
         });
         return instance;
     }
     componentDidMount() {
-        if (this.props.children.length > 0) {
-            this.state.instance.pack();
+        if (this.props.children && this.props.children.length > 0) {
+            this.bricksInstance = this.initializeBricks();
+            this.bricksInstance.pack();
         }
     }
     componentDidUpdate(prevProps) {
         if (prevProps.children.length === 0 && this.props.children.length === 0)
             return;
         if (prevProps.children.length !== this.props.children.length) {
-            return this.state.instance.update();
+            return this.bricksInstance.update();
         }
     }
     componentWillUnmount() {
-        this.state.instance.resize(false);
+        this.bricksInstance.resize(false);
     }
     render() {
         return (
-            <div className = "masonry-class"
-                 id = {this.state.containerId}>
+            <div className = "masonry-class" 
+                 id = {this.state.containerId}
+                 style = {this.props.style}>
                 {this.props.children}
             </div>
         );
