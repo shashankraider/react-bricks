@@ -1,1 +1,10 @@
 .babelrc
+node_modules
+example
+src
+build
+.eslintrc
+webpack.config.js
+webpack.config.build.js
+.gitignore
+yarn.lock

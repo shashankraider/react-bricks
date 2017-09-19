@@ -1,5 +1,7 @@
 import React from 'react';
 import Bricks from 'bricks.js';
+import InfiniteScroll from 'react-infinite-scroller';
+import MDSpinner from 'react-md-spinner';
 
 class ReactBricks extends React.Component {
     constructor(props) {
@@ -12,6 +14,9 @@ class ReactBricks extends React.Component {
                     {mq: '1024px', columns: 6, gutter: 20}
                 ],
             packed: this.props.packed || "data-packed",
+            hasMoreBricks : this.props.hasMore || false,
+            useWindowForScroll: this.props.useWindowForScroll || false
+
         }
     }
     initializeBricks = () => {
@@ -27,28 +32,38 @@ class ReactBricks extends React.Component {
         return instance;
     }
     componentDidMount() {
-        if (this.props.children && this.props.children.length > 0) {
+        if (this.props.bricks && this.props.bricks.length > 0) {
             this.bricksInstance = this.initializeBricks();
             this.bricksInstance.pack();
         }
     }
     componentDidUpdate(prevProps) {
-        if (prevProps.children.length === 0 && this.props.children.length === 0)
+        if (prevProps.bricks.length === 0 && this.props.bricks.length === 0)
             return;
-        if (prevProps.children.length !== this.props.children.length) {
+        if (prevProps.bricks.length !== this.props.bricks.length) {
             return this.bricksInstance.update();
         }
     }
     componentWillUnmount() {
         this.bricksInstance.resize(false);
     }
+    loadMore = () => {
+        console.log("called");
+        this.props.loadMore();
+    }
     render() {
         return (
+            <InfiniteScroll
+            pageStart = {0}
+            loadMore = {this.props.loadMoreBricks}
+            hasMore = {this.state.hasMoreBricks}
+            useWindow = {this.state.useWindow}>
             <div className = "masonry-class" 
-                 id = {this.state.containerId}
+                id = {this.state.containerId}
                  style = {this.props.style}>
-                {this.props.children}
+                {this.props.bricks}
             </div>
+            </InfiniteScroll>
         );
     }
 }

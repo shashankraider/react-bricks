@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import shortid from 'shortid';
 import ReactBricks from "../src/components/ReactBricks";
 import "./styles/app.scss"
 
@@ -11,22 +12,31 @@ export default class App extends React.Component {
         this.heights = [200, 300, 300, 400, 400, 450];
         this.elements = this.generateElements();
         this.state = {
-            children: this.getChildren()
+            bricks: this.getBricks()
         }
     
     }
     componentWillReceiveProps(nextProps) {
-        this.setState({children: this.getChildren()});
+        this.setState({bricks: this.getBricks()});
     }
     getRandomElement = (array) => {
         return array[Math.floor(Math.random() * array.length)];
     }
     generateElements = () => [...Array(10).keys()].map(() => ({
-        key: Math.random(),
+        key: shortid.generate(),
         color: this.getRandomElement(this.colors),
         height: `${this.getRandomElement(this.heights)}px`,
     }));
-    getChildren = () => {
+    loadMore = () => {
+        console.log(this.elements);
+        this.elements = this.elements.concat(this.generateElements());
+        
+        setTimeout(() => {
+            console.log("inside setTimeout");
+            this.setState({bricks: this.getBricks()});
+        }, 250)
+    }
+    getBricks = () => {
         let results = null;
             results = this.elements.map(({key, color, height}, i) => {
                 return (
@@ -42,8 +52,9 @@ export default class App extends React.Component {
         return(
             <div className="app">
                 <ReactBricks
-            children= {this.state.children}
-            />
+                loadMoreBricks = {this.loadMore}
+                bricks= {this.state.bricks}
+                />
             </div>
 
         );
