@@ -73,7 +73,7 @@ class Bricks extends React.Component {
 
 ### containerId
 
-Id of the container of the grid which will contain the bricks, Default it has  `id = "bricks-container"`  
+Id of the container of the grid which will contain the bricks/grid items, Default value is `containerId = "bricks-container"`  
 
 ```es6
  return(
