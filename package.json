@@ -1,6 +1,6 @@
 {
   "name": "react-bricks-infinite",
-  "version": "1.2.0",
+  "version": "1.2.3",
   "main": "lib/index.js",
   "repository": "git@github-home:shashankraider/react-bricks.git",
   "author": "smendiratta <shashankmendiratta@outlook.com>",
@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "babel": "^6.23.0",
+    "path": "^0.12.7",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.1",
@@ -28,11 +29,12 @@
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1"
   },
+  "peerDependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
   "dependencies": {
     "bricks.js": "^1.8.0",
-    "path": "^0.12.7",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
     "react-infinite-scroller": "^1.0.15",
     "react-md-spinner": "^0.2.5"
   }
