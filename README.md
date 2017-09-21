@@ -1,7 +1,11 @@
 React Bricks 
 ====================
 
-React Bricks is a react component for [bricks.js](https://github.com/callmecavs/bricks.js). Which also supports Infinite scroll Feature
+React Bricks is a React Masonry Framework with **infinite scroll feature**, currently it leverages  [bricks.js](https://github.com/callmecavs/bricks.js).
+
+##Demo 
+
+Demo link - https://react-bricks.herokuapp.com/
 
 ## Install
 
