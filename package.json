@@ -1,6 +1,6 @@
 {
   "name": "react-bricks-infinite",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "main": "lib/index.js",
   "repository": "git@github-home:shashankraider/react-bricks.git",
   "author": "smendiratta <shashankmendiratta@outlook.com>",
@@ -12,6 +12,18 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
+  "keywords": [
+    "react",
+    "bricks",
+    "bricksjs",
+    "react-bricks",
+    "masonry-infinite",
+    "bricks-masonry-infinite",
+    "masonry",
+    "react-component",
+    "infinite",
+    "scroll"
+  ],
   "devDependencies": {
     "babel": "^6.23.0",
     "path": "^0.12.7",
