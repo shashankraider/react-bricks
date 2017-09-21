@@ -2,6 +2,7 @@ import React from 'react';
 import Bricks from 'bricks.js';
 import InfiniteScroll from 'react-infinite-scroller';
 import MDSpinner from 'react-md-spinner';
+import './ReactBricks.scss';
 
 class ReactBricks extends React.Component {
     constructor(props) {
@@ -14,28 +15,64 @@ class ReactBricks extends React.Component {
                     {mq: '1024px', columns: 6, gutter: 20}
                 ],
             packed: this.props.packed || "data-packed",
-            hasMoreBricks : this.props.hasMore || false,
-            useWindowForScroll: this.props.useWindowForScroll || false
-
+            hasMoreBricks : this.props.hasMoreBricks || false,
+            useWindowForScroll: this.props.useWindowForScroll || true,
+            loaderComponent: this.props.loaderComponent || this.initializeLoader()
         }
+    }
+    initializeLoader = () => {
+        let size = null, 
+            duration = null,
+            color = null;
+        if (this.props.defaultLoaderStyle){
+            size = this.props.defaultLoaderStyle.spinnerSize || 28; 
+            duration = this.props.defaultLoaderStyle.spinnerDuration || 1333;
+            color = this.props.defaultLoaderStyle.spinnerColor || null;
+            return (
+                <div className = "bricks-spinner">
+                <MDSpinner
+                size= {size}
+                duration = {duration}
+                singleColor = {color}
+                />
+                </div>
+            )
+        }
+        else {
+            return (
+                <div className = "bricks-spinner">
+                    <MDSpinner/>
+                </div>
+            )
+        }
+
     }
     initializeBricks = () => {
         const instance = Bricks({
+            position: false,
             container: `#${this.state.containerId}`,
             packed: this.state.packed,
             sizes: [
-                    {columns: 2, gutter: 20},
-                    {mq: '768px', columns: 3, gutter: 20},
-                    {mq: '1024px', columns: 4, gutter: 20}
+                    {columns: 2, gutter: 10},
+                    {mq: '768px', columns: 3, gutter: 25},
+                    {mq: '1024px', columns: 4, gutter: 50}
                 ]
         });
         return instance;
+    }
+    componentWillReceiveProps(nextProps){
+        if(nextProps.reRender) {
+            this.updateBricksLayout();
+        }
     }
     componentDidMount() {
         if (this.props.bricks && this.props.bricks.length > 0) {
             this.bricksInstance = this.initializeBricks();
             this.bricksInstance.pack();
         }
+    }
+    updateBricksLayout = () => {
+        this.bricksInstance.resize(true);
     }
     componentDidUpdate(prevProps) {
         if (prevProps.bricks.length === 0 && this.props.bricks.length === 0)
@@ -47,22 +84,20 @@ class ReactBricks extends React.Component {
     componentWillUnmount() {
         this.bricksInstance.resize(false);
     }
-    loadMore = () => {
-        console.log("called");
-        this.props.loadMore();
-    }
+
     render() {
         return (
-            <InfiniteScroll
+            <InfiniteScroll className= "masonry-class"
             pageStart = {0}
             loadMore = {this.props.loadMoreBricks}
+            loader = {this.state.loaderComponent}
             hasMore = {this.state.hasMoreBricks}
             useWindow = {this.state.useWindow}>
-            <div className = "masonry-class" 
+            <section className = "bricks-container"
                 id = {this.state.containerId}
                  style = {this.props.style}>
                 {this.props.bricks}
-            </div>
+            </section>
             </InfiniteScroll>
         );
     }
