@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import shortid from 'shortid';
 import ReactBricks from "../src/components/ReactBricks";
+import Tile from "./Tile";
 import "./styles/app.scss"
 
 export default class App extends React.Component {
@@ -9,10 +10,17 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.colors = ['#EC407A', '#EF5350', '#AB47BC', '#7E57C2', '#5C6BC0', '#42A5F5', '#29B6F6', '#26C6DA', '#26A69A', '#66BB6A', '#9CCC65', '#827717', '#EF6C00'];
-        this.heights = [200, 300, 300, 400, 400, 450];
+        this.heights = [150, 250, 200, 350, 400, 450];
         this.elements = this.generateElements();
         this.state = {
-            bricks: this.getBricks()
+            bricks: this.getBricks(),
+            reRender: false
+        }
+        window.onresize = () => {
+           this.setState({reRender: true});
+        }
+        this.defaultLoaderStyle = {
+            spinnerSize: 64
         }
     
     }
@@ -25,25 +33,26 @@ export default class App extends React.Component {
     generateElements = () => [...Array(10).keys()].map(() => ({
         key: shortid.generate(),
         color: this.getRandomElement(this.colors),
-        height: `${this.getRandomElement(this.heights)}px`,
+        height: this.getRandomElement(this.heights),
     }));
     loadMore = () => {
-        console.log(this.elements);
         this.elements = this.elements.concat(this.generateElements());
         
         setTimeout(() => {
             console.log("inside setTimeout");
             this.setState({bricks: this.getBricks()});
-        }, 250)
+        }, 2500)
     }
     getBricks = () => {
         let results = null;
             results = this.elements.map(({key, color, height}, i) => {
                 return (
-                    <div key={key} className="card" style={{background: color, height}}>
-                                <h2>{i}</h2>
-                            </div>
-                );
+                    <Tile key={key} 
+                    className="card" 
+                    style={{background: color, 
+                    height: height}}
+                    data = {i} />
+                    );
             });
             return results;
     }
@@ -52,8 +61,12 @@ export default class App extends React.Component {
         return(
             <div className="app">
                 <ReactBricks
+                containerId = {"bricks-container-app"}
                 loadMoreBricks = {this.loadMore}
+                hasMoreBricks  = {true}
+                reRender = {this.state.reRender}
                 bricks= {this.state.bricks}
+                defaultLoaderStyle = {this.defaultLoaderStyle}
                 />
             </div>
 

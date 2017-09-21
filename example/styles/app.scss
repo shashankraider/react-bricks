@@ -1,11 +1,20 @@
 .app {
-    width:100%;
     .card {
-        width: 296px;
+        width: 200px;
         box-shadow: rgba(0, 0, 0, 0.14902) 0px 2px 4px;
         display: flex;
         justify-content: center;
         align-items: center;
+        border-style: solid;
+        border-radius: 16px ;
+        flex-direction: column;
+        .innerCard {
+           width: 80%;
+           display:flex;
+            flex-basis: auto;
+            border: 1px solid #ccc;
+            border-radius: 16px 
+        }
       }
 
 }
