@@ -61,6 +61,15 @@ class Bricks extends React.Component {
 ```
 
 ## Props
+* [containerId](#containerId) (node or CSS selector)
+* [bricks](#bricks) child Components (grid items)
+* [hasMoreBricks](#hasMoreBricks) boolean
+* [sizes](#sizes) array
+* [useWindowForScroll](#useWindowForScroll) boolean
+* [reRender](#reRender) boolean
+* [loaderComponent](#loaderComponent) 
+* [defaultLoaderStyle](#defaultLoaderStyle)
+* [style](#defaultLoaderStyle)
 
 ### containerId
 
@@ -152,7 +161,7 @@ const sizes= [
 This is `type = boolean` If `true` Scroll listeners are attached to window , in case of `false` it will attach to the components `parentNode`.
 By default it is true
 
-###reRender
+### reRender
 This is `type = boolean` If `true` reRender will readjust all the bricks in the grid container. This is helpful in case of a window resize 
 
 ```es6
@@ -186,6 +195,11 @@ What is happening above is when on a resize we send props reRender as `true` it 
 ### loaderComponent
 
 Your own custom loader component can be passed as props to ReactBricks. By default the loader  is a spinner.
+
+**Default Loader**
+
+![Default Loader Screen Shot](https://github.com/shashankraider/react-bricks/blob/master/example/spinner.gif)
+
 
 ```es6
 return(
@@ -231,7 +245,7 @@ In case the default spinner properties needs to be changed, it can be done as be
         );       
 ```        
 
-###style
+### style
 Custom inline styles can be passed which would applied to the grid container . By default it is `{}`
 
 ```es6
