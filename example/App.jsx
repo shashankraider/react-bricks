@@ -69,7 +69,6 @@ export default class App extends React.Component {
                 defaultLoaderStyle = {this.defaultLoaderStyle}
                 />
             </div>
-
         );
     }
 

@@ -11,13 +11,14 @@ class ReactBricks extends React.Component {
             containerId: this.props.containerId || "bricks-container",
             sizes: this.props.sizes || [
                     {columns: 2, gutter: 20},
-                    {mq: '768px', columns: 3, gutter: 20},
-                    {mq: '1024px', columns: 6, gutter: 20}
+                    {mq: '768px', columns: 3, gutter: 25},
+                    {mq: '1024px', columns: 5, gutter: 40}
                 ],
             packed: this.props.packed || "data-packed",
             hasMoreBricks : this.props.hasMoreBricks || false,
             useWindowForScroll: this.props.useWindowForScroll || true,
-            loaderComponent: this.props.loaderComponent || this.initializeLoader()
+            loaderComponent: this.props.loaderComponent || this.initializeLoader(),
+            style: this.props.style || {}
         }
     }
     initializeLoader = () => {
