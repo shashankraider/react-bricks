@@ -1,11 +1,14 @@
 React Bricks 
 ====================
 
-React Bricks is a React Masonry Framework with **infinite scroll feature**, currently it leverages  [bricks.js](https://github.com/callmecavs/bricks.js).
+React Bricks is a React Masonry Framework with **infinite scroll feature**, currently it leverages  [bricks.js](https://github.com/callmecavs/bricks.js). This framework is plug and play used to deliver "Pinterest" type experience.
 
 ## Demo 
 
 Demo link - https://react-bricks.herokuapp.com/
+
+## Feedback
+For Feeback on any enhancement requests, please reach out on shashankmendiratta@outlook.com
 
 ## Install
 
@@ -264,7 +267,7 @@ Custom inline styles can be passed which would applied to the grid container . B
             </div>
         );       
 ```      
-
+ 
 ## License
 
 MIT.
