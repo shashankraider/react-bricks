@@ -53,11 +53,7 @@ class ReactBricks extends React.Component {
             position: false,
             container: `#${this.state.containerId}`,
             packed: this.state.packed,
-            sizes: [
-                    {columns: 2, gutter: 10},
-                    {mq: '768px', columns: 3, gutter: 25},
-                    {mq: '1024px', columns: 4, gutter: 50}
-                ]
+            sizes: this.state.sizes
         });
         return instance;
     }
