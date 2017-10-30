@@ -8,6 +8,7 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 module.exports = {
     entry: './example/index.js',
+    devtool: 'inline-source-map',
     output: {
         path: path.resolve('dist'),
         filename: 'build.js'
