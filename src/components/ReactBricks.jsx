@@ -59,7 +59,7 @@ class ReactBricks extends React.Component {
     }
     componentWillReceiveProps(nextProps){
         if(nextProps.reRender) {
-            this.updateBricksLayout();
+            this.resizeBricksLayout();
         }
     }
     componentDidMount() {
@@ -68,7 +68,7 @@ class ReactBricks extends React.Component {
             this.bricksInstance.pack();
         }
     }
-    updateBricksLayout = () => {
+    resizeBricksLayout = () => {
         this.bricksInstance.resize(true);
     }
     componentDidUpdate(prevProps) {
@@ -77,6 +77,12 @@ class ReactBricks extends React.Component {
         if (prevProps.bricks.length !== this.props.bricks.length) {
             return this.bricksInstance.update();
         }
+    }
+    packLayout = () => {
+        this.bricksInstance.pack();
+    }
+    updateBricksLayout = () => {
+        this.bricksInstance.update();
     }
     componentWillUnmount() {
         this.bricksInstance.resize(false);

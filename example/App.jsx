@@ -63,6 +63,7 @@ export default class App extends React.Component {
                 <ReactBricks
                 containerId = {"bricks-container-app"}
                 loadMoreBricks = {this.loadMore}
+                ref={(ref) => this.reactBricks = ref}
                 hasMoreBricks  = {true}
                 reRender = {this.state.reRender}
                 bricks= {this.state.bricks}
