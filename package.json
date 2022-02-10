@@ -34,7 +34,7 @@
     "bricks.js": "^1.8.0",
     "babel-preset-react": "^6.24.1",
     "html-webpack-plugin": "^2.30.1",
-    "node-sass": "^4.5.3",
+    "node-sass": "^7.0.0",
     "path": "^0.12.7",
     "sass-loader": "^6.0.6",
     "shortid": "^2.2.8",
